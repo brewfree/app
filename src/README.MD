@@ -6,3 +6,4 @@ NodeJS Version 6 or greater: https://nodejs.org/en/download/
 Install SPA Templates from command line: dotnet new --install Microsoft.AspNetCore.SpaTemplates::*
 Add secrets to be able to login
 (Optional) ReSharper
+(Optional) Angular 2 Snippet Pack
