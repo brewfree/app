@@ -10,8 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.0.2" />
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.0-beta2" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="1.1.1" />
@@ -20,12 +20,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="1.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
@@ -35,6 +35,7 @@
     <Content Remove="ClientApp\**" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClientApp\dist\vendor-manifest.json" />
     <Content Include="wwwroot\assets\0.jpg" />
     <Content Include="wwwroot\assets\1.jpg" />
     <Content Include="wwwroot\assets\2.jpg" />
@@ -68,6 +69,12 @@
     <Content Include="wwwroot\assets\ms-icon-70x70.png" />
     <Content Include="wwwroot\assets\tyler.jpg" />
     <Content Include="wwwroot\browserconfig.xml" />
+    <Content Include="wwwroot\dist\89889688147bd7575d6327160d64e760.svg" />
+    <Content Include="wwwroot\dist\main-client.js" />
+    <Content Include="wwwroot\dist\main-client.js.map" />
+    <Content Include="wwwroot\dist\vendor-manifest.json" />
+    <Content Include="wwwroot\dist\vendor.css" />
+    <Content Include="wwwroot\dist\vendor.js" />
     <Content Include="wwwroot\favicon.ico" />
     <Content Include="wwwroot\manifest.json" />
   </ItemGroup>
