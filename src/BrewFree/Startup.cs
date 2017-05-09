@@ -1,6 +1,6 @@
+using AspNet.Security.OpenIdConnect.Primitives;
 using BrewFree.Data;
 using BrewFree.Data.Models;
-using BrewFree.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -37,8 +37,13 @@ namespace BrewFree
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseOpenIddict();
+            });
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
@@ -46,21 +51,76 @@ namespace BrewFree
             })
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
+            
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.ClaimsIdentity.UserNameClaimType = OpenIdConnectConstants.Claims.Name;
+                options.ClaimsIdentity.UserIdClaimType = OpenIdConnectConstants.Claims.Subject;
+                options.ClaimsIdentity.RoleClaimType = OpenIdConnectConstants.Claims.Role;
+            });
 
-            services.AddMvc();
+            services.AddOpenIddict(options =>
+            {
+                options.AddEntityFrameworkCoreStores<ApplicationDbContext>();
+                options.AddMvcBinders();
+                options.EnableAuthorizationEndpoint("/connect/authorize")
+                    .EnableLogoutEndpoint("/connect/logout")
+                    .EnableTokenEndpoint("/connect/token")
+                    .EnableUserinfoEndpoint("/api/userinfo");
+                options.AllowAuthorizationCodeFlow()
+                    .AllowPasswordFlow()
+                    .AllowRefreshTokenFlow();
+                options.RequireClientIdentification();
+
+                // options.UseJsonWebTokens();
+                // options.AddEphemeralSigningKey();
+
+            });
 
             services.AddServices();
 
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(options =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "BrewFree API", Version = "v1" });
+                options.SwaggerDoc("v1", new Info { Title = "BrewFree API", Version = "v1" });
             });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, ApplicationDbContext applicationDbContext)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseStaticFiles();
+
+            app.UseWhen(context => !context.Request.Path.StartsWithSegments("/api"), branch =>
+            {
+                if (env.IsDevelopment())
+                {
+                    branch.UseDeveloperExceptionPage();
+                    branch.UseDatabaseErrorPage();
+                }
+                else
+                {
+                    branch.UseStatusCodePagesWithReExecute("/Home/Error");
+                }
+            });
+
+            if (env.IsDevelopment())
+            {
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                {
+                    HotModuleReplacement = true
+                });
+
+                app.UseSwagger();
+                app.UseSwaggerUI(x =>
+                {
+                    x.SwaggerEndpoint("/swagger/v1/swagger.json", "BrewFree API V1");
+                    x.RoutePrefix = "api";
+                });
+            }
+
+            app.UseOAuthValidation();
 
             app.UseIdentity();
 
@@ -88,22 +148,8 @@ namespace BrewFree
                 ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"]
             });
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
-                    HotModuleReplacement = true
-                });
-                app.UseApplicationDbContextAutoMigration(applicationDbContext);
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
-
-            app.UseMiddleware<WebApiExceptionHandler>();
-
+            app.UseOpenIddict();
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -114,16 +160,14 @@ namespace BrewFree
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });
             });
-
-            app.UseStaticFiles();
-
-            app.UseSwaggerUI(x =>
-            {
-                x.SwaggerEndpoint("/swagger/v1/swagger.json", "BrewFree API V1");
-                x.RoutePrefix = "api/swagger/ui";
-            });
-
+            
             app.UseAutoMapper();
+
+            if (env.IsDevelopment())
+            {
+                app.UseApplicationDbContextAutoMigration();
+                app.UseOpenIddictApplication().GetAwaiter().GetResult();
+            }
         }
     }
 }
