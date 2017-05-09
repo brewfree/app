@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using BrewFree.Data.Constants;
-using BrewFree.Data.Models;
 using BrewFree.Data.Models.Lookups;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace BrewFree.Data
 {
@@ -20,16 +16,6 @@ namespace BrewFree.Data
 
         internal static void Seed(ApplicationDbContext context)
         {
-            // roles
-            context.Roles.Add(new IdentityRole(RoleType.Admin));
-
-            // system user
-            var systemId = Guid.Empty.ToString();
-            context.Users.Add(new ApplicationUser { Id = systemId, Email = "support@brewfree.org", EmailConfirmed = true });
-
-            // system brewer
-            context.Brewers.Add(new Brewer { Id = Guid.NewGuid().ToString(), ApplicationUserId = systemId, Name = "Brew Free" });
-
             // style guide
             context.StyleTags.Add(new StyleTag { Code = "bjcp-2015", TypeCode = StyleTagType.StyleGuide, Name = "BJCP 2015", Description = "BEER JUDGE CERTIFICATION PROGRAM 2015" });
 

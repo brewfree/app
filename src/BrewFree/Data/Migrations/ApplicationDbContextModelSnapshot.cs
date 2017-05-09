@@ -391,6 +391,10 @@ namespace BrewFree.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("OpenIddictApplications");
+
+                    b.HasAnnotation("SqlServer:Schema", "Security");
+
+                    b.HasAnnotation("SqlServer:TableName", "Applications");
                 });
 
             modelBuilder.Entity("OpenIddict.Models.OpenIddictAuthorization", b =>
@@ -409,6 +413,10 @@ namespace BrewFree.Data.Migrations
                     b.HasIndex("ApplicationId");
 
                     b.ToTable("OpenIddictAuthorizations");
+
+                    b.HasAnnotation("SqlServer:Schema", "Security");
+
+                    b.HasAnnotation("SqlServer:TableName", "Authorizations");
                 });
 
             modelBuilder.Entity("OpenIddict.Models.OpenIddictScope", b =>
@@ -421,6 +429,10 @@ namespace BrewFree.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OpenIddictScopes");
+
+                    b.HasAnnotation("SqlServer:Schema", "Security");
+
+                    b.HasAnnotation("SqlServer:TableName", "Scopes");
                 });
 
             modelBuilder.Entity("OpenIddict.Models.OpenIddictToken", b =>
@@ -443,6 +455,10 @@ namespace BrewFree.Data.Migrations
                     b.HasIndex("AuthorizationId");
 
                     b.ToTable("OpenIddictTokens");
+
+                    b.HasAnnotation("SqlServer:Schema", "Security");
+
+                    b.HasAnnotation("SqlServer:TableName", "Tokens");
                 });
 
             modelBuilder.Entity("BrewFree.Data.Models.Brewer", b =>

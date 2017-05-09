@@ -9,11 +9,10 @@ namespace BrewFree
 {
     public static class OpenIddictConfig
     {
-        public static async Task UseOpenIddictApplication(this IApplicationBuilder app)
+        public static async Task UseAppOpenIddict(this IApplicationBuilder app)
         {
-            // Note: when using a custom entity or a custom key type, replace OpenIddictApplication by the appropriate type.
-            var manager =app.ApplicationServices.GetRequiredService<OpenIddictApplicationManager<OpenIddictApplication>>();
-
+            var manager = app.ApplicationServices.GetRequiredService<OpenIddictApplicationManager<OpenIddictApplication>>();
+            
             if (await manager.FindByClientIdAsync("BrewFree", CancellationToken.None) == null)
             {
                 var application = new OpenIddictApplication

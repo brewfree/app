@@ -2,6 +2,6 @@
 {
     public class RoleType
     {
-        public const string Admin = "braumeister";
+        public const string Braumeister = "braumeister";
     }
 }

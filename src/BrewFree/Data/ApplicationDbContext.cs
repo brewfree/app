@@ -2,6 +2,7 @@
 using BrewFree.Data.Models.Lookups;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using OpenIddict.Models;
 
 namespace BrewFree.Data
 {
@@ -45,6 +46,10 @@ namespace BrewFree.Data
             builder.Entity<IdentityUserRole<string>>().ForSqlServerToTable("UserRoles", "Security");
             builder.Entity<ApplicationUser>().ForSqlServerToTable("Users", "Security");
             builder.Entity<IdentityUserToken<string>>().ForSqlServerToTable("UserTokens", "Security");
+            builder.Entity<OpenIddictApplication>().ForSqlServerToTable("Applications", "Security");
+            builder.Entity<OpenIddictAuthorization>().ForSqlServerToTable("Authorizations", "Security");
+            builder.Entity<OpenIddictScope>().ForSqlServerToTable("Scopes", "Security");
+            builder.Entity<OpenIddictToken>().ForSqlServerToTable("Tokens", "Security");
 
             #endregion Security
 

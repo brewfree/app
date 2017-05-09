@@ -128,7 +128,8 @@ namespace BrewFree.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OpenIddictApplications",
+                name: "Applications",
+                schema: "Security",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -141,11 +142,12 @@ namespace BrewFree.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OpenIddictApplications", x => x.Id);
+                    table.PrimaryKey("PK_Applications", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "OpenIddictScopes",
+                name: "Scopes",
+                schema: "Security",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -153,7 +155,7 @@ namespace BrewFree.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OpenIddictScopes", x => x.Id);
+                    table.PrimaryKey("PK_Scopes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -301,7 +303,8 @@ namespace BrewFree.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OpenIddictAuthorizations",
+                name: "Authorizations",
+                schema: "Security",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -311,11 +314,12 @@ namespace BrewFree.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OpenIddictAuthorizations", x => x.Id);
+                    table.PrimaryKey("PK_Authorizations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OpenIddictAuthorizations_OpenIddictApplications_ApplicationId",
+                        name: "FK_Authorizations_Applications_ApplicationId",
                         column: x => x.ApplicationId,
-                        principalTable: "OpenIddictApplications",
+                        principalSchema: "Security",
+                        principalTable: "Applications",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -359,7 +363,8 @@ namespace BrewFree.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OpenIddictTokens",
+                name: "Tokens",
+                schema: "Security",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -370,17 +375,19 @@ namespace BrewFree.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OpenIddictTokens", x => x.Id);
+                    table.PrimaryKey("PK_Tokens", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OpenIddictTokens_OpenIddictApplications_ApplicationId",
+                        name: "FK_Tokens_Applications_ApplicationId",
                         column: x => x.ApplicationId,
-                        principalTable: "OpenIddictApplications",
+                        principalSchema: "Security",
+                        principalTable: "Applications",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_OpenIddictTokens_OpenIddictAuthorizations_AuthorizationId",
+                        name: "FK_Tokens_Authorizations_AuthorizationId",
                         column: x => x.AuthorizationId,
-                        principalTable: "OpenIddictAuthorizations",
+                        principalSchema: "Security",
+                        principalTable: "Authorizations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -460,24 +467,28 @@ namespace BrewFree.Data.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OpenIddictApplications_ClientId",
-                table: "OpenIddictApplications",
+                name: "IX_Applications_ClientId",
+                schema: "Security",
+                table: "Applications",
                 column: "ClientId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_OpenIddictAuthorizations_ApplicationId",
-                table: "OpenIddictAuthorizations",
+                name: "IX_Authorizations_ApplicationId",
+                schema: "Security",
+                table: "Authorizations",
                 column: "ApplicationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OpenIddictTokens_ApplicationId",
-                table: "OpenIddictTokens",
+                name: "IX_Tokens_ApplicationId",
+                schema: "Security",
+                table: "Tokens",
                 column: "ApplicationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OpenIddictTokens_AuthorizationId",
-                table: "OpenIddictTokens",
+                name: "IX_Tokens_AuthorizationId",
+                schema: "Security",
+                table: "Tokens",
                 column: "AuthorizationId");
         }
 
@@ -512,10 +523,12 @@ namespace BrewFree.Data.Migrations
                 schema: "Security");
 
             migrationBuilder.DropTable(
-                name: "OpenIddictScopes");
+                name: "Scopes",
+                schema: "Security");
 
             migrationBuilder.DropTable(
-                name: "OpenIddictTokens");
+                name: "Tokens",
+                schema: "Security");
 
             migrationBuilder.DropTable(
                 name: "StyleTags",
@@ -538,14 +551,16 @@ namespace BrewFree.Data.Migrations
                 schema: "Security");
 
             migrationBuilder.DropTable(
-                name: "OpenIddictAuthorizations");
+                name: "Authorizations",
+                schema: "Security");
 
             migrationBuilder.DropTable(
                 name: "Users",
                 schema: "Security");
 
             migrationBuilder.DropTable(
-                name: "OpenIddictApplications");
+                name: "Applications",
+                schema: "Security");
         }
     }
 }

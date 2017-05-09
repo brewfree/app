@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BrewFree.Controllers.Api
 {
-    [Authorize(Roles = RoleType.Admin)]
+    [Authorize(Roles = RoleType.Braumeister)]
     [Produces("application/json")]
     [Route("api/users")]
     public class UsersController : Controller

@@ -7,7 +7,7 @@ namespace BrewFree
 {
     public static class AutoMapperConfig
     {
-        public static void UseAutoMapper(this IApplicationBuilder app)
+        public static void UseAppAutoMapper(this IApplicationBuilder app)
         {
             Mapper.Initialize(x =>
             {

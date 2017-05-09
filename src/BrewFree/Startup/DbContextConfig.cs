@@ -5,9 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BrewFree
 {
-    public static class ApplicationDbContextConfig
+    public static class DbContextConfig
     {
-        public static void UseApplicationDbContextAutoMigration(this IApplicationBuilder app)
+        public static void UseAppDbContext(this IApplicationBuilder app)
         {
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {

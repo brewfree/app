@@ -77,7 +77,7 @@ namespace BrewFree
 
             });
 
-            services.AddServices();
+            services.AddAppServices();
 
             services.AddSwaggerGen(options =>
             {
@@ -161,13 +161,15 @@ namespace BrewFree
                     defaults: new { controller = "Home", action = "Index" });
             });
             
-            app.UseAutoMapper();
+            app.UseAppAutoMapper();
 
             if (env.IsDevelopment())
             {
-                app.UseApplicationDbContextAutoMigration();
-                app.UseOpenIddictApplication().GetAwaiter().GetResult();
+                app.UseAppDbContext();
+                app.UseAppOpenIddict().GetAwaiter().GetResult();
             }
+            
+            app.UseAppAspNetIdentity().GetAwaiter().GetResult();
         }
     }
 }

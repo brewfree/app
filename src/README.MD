@@ -14,4 +14,4 @@ Open a command prompt at the BrewFree project path
 dotnet ef database drop
 dotnet ef migrations remove
 dotnet ef migrations add "Initial" -o "Data\Migrations"
-dotnet ef database update
+dotnet ef database update (or just run the project which will also seed the data)
