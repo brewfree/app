@@ -2,5 +2,19 @@
     ViewData["Title"] = "Error";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+@using BrewFree.ViewModels.Shared
+@model ErrorViewModel
+
+<div class="jumbotron">
+    <h2>Hold my beer.  Something went wrong! :(</h2>
+    <p class="lead text-left">
+        @if (!string.IsNullOrEmpty(Model.Error))
+        {
+            <strong>@Model.Error</strong>
+        }
+        @if (!string.IsNullOrEmpty(Model.Description))
+        {
+            <small>@Model.Description</small>
+        }
+    </p>
+</div>
