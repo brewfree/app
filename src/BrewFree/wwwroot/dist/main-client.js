@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d2a3436860590f0b84fb"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "a9c78dba851409293064"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -1548,15 +1548,15 @@ var http_1 = __webpack_require__(33);
 var AuthService = (function () {
     function AuthService(http) {
         this.http = http;
-        this.authKey = "auth";
+        this.authKey = 'auth';
     }
     AuthService.prototype.login = function (username, password) {
         var _this = this;
-        var url = "api/connect/token"; // JwtProvider's LoginPath 
+        var url = 'api/connect/token'; // JwtProvider's LoginPath 
         var data = {
             username: username,
             password: password,
-            client_id: "BrewFree",
+            client_id: 'BrewFree',
             // required when signing up with username/password 
             grant_type: "password",
             // space-separated list of scopes for which the token is issued 
