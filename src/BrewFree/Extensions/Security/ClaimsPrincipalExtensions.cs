@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Security.Claims;
 
-namespace BrewFree.Extensions
+namespace BrewFree.Extensions.Security
 {
     public static class ClaimsPrincipalExtensions
     {

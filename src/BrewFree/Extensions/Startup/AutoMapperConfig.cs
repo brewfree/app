@@ -3,7 +3,7 @@ using BrewFree.Data.Models;
 using BrewFree.ReadModels;
 using Microsoft.AspNetCore.Builder;
 
-namespace BrewFree
+namespace BrewFree.Extensions.Startup
 {
     public static class AutoMapperConfig
     {

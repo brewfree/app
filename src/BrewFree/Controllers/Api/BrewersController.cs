@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using BrewFree.Extensions;
+using BrewFree.Extensions.Security;
 using BrewFree.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

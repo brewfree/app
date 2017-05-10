@@ -1,7 +1,7 @@
 ﻿using BrewFree.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BrewFree
+namespace BrewFree.Extensions.Startup
 {
     public static class ServicesConfig
     {

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BrewFree
+namespace BrewFree.Extensions.Startup
 {
     public static class AspNetIdentityConfig
     {

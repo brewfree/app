@@ -1,5 +1,5 @@
 ﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
-@using BrewFree.Extensions
+@using BrewFree.Extensions.Mvc
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,7 +16,6 @@
         <meta property="og:image" content="@Url.AbsoluteContent("~/")assets/brewfree-fb.png" />
         <title>Brew Free - @ViewData["Title"]</title>
         <base href="/" />
-        <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" />
         <link rel="apple-touch-icon" sizes="57x57" href="~/assets/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="~/assets/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="~/assets/apple-icon-72x72.png">
@@ -30,6 +29,7 @@
         <link rel="icon" type="image/png" sizes="32x32" href="~/assets/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="96x96" href="~/assets/favicon-96x96.png">
         <link rel="icon" type="image/png" sizes="16x16" href="~/assets/favicon-16x16.png">
+        <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" />
         <link rel="manifest" href="~/manifest.json">
         @Html.Raw(JavaScriptSnippet.FullScript)
     </head>

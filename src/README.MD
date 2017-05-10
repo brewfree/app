@@ -18,3 +18,6 @@ dotnet ef database update (or just run the project which will also seed the data
 
 To create a script
 dotnet ef migrations script --idempotent --output "C:\Dev\BrewFree\app\src\BrewFree\obj\Debug\netcoreapp1.1\PubTmp\EFSQLScripts\BrewFree.Data.ApplicationDbContext.sql" --context BrewFree.Data.ApplicationDbContext
+
+Learn about mark down
+https://www.visualstudio.com/en-us/docs/reference/markdown-guidance

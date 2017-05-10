@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using OpenIddict.Core;
 using OpenIddict.Models;
 
-namespace BrewFree
+namespace BrewFree.Extensions.Startup
 {
     public static class OpenIddictConfig
     {

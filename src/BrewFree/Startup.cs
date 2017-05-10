@@ -1,6 +1,7 @@
 using AspNet.Security.OpenIdConnect.Primitives;
 using BrewFree.Data;
 using BrewFree.Data.Models;
+using BrewFree.Extensions.Startup;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -165,11 +166,11 @@ namespace BrewFree
 
             if (env.IsDevelopment())
             {
-                app.UseAppDbContext();
+                app.UseAppDbContextMigrations();
                 app.UseAppOpenIddict().GetAwaiter().GetResult();
+                app.UseAppAspNetIdentity().GetAwaiter().GetResult();
+                app.UseSeedData();
             }
-            
-            app.UseAppAspNetIdentity().GetAwaiter().GetResult();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BrewFree.Extensions
+namespace BrewFree.Extensions.Mvc
 {
     public static class UrlHelperExtensions
     {

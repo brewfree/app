@@ -1,21 +1,20 @@
-﻿import { Injectable, EventEmitter } from "@angular/core";
-import { Http, Headers, Response, RequestOptions } from "@angular/http";
-import { Observable } from "rxjs/Observable";
+﻿import { Injectable, EventEmitter } from '@angular/core';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
 @Injectable()
 export class AuthService {
-    authKey = "auth";
+    authKey = 'auth';
 
     constructor(private http: Http) {
     }
 
     login(username: string, password: string): any {
-        var url = "api/connect/token";  // JwtProvider's LoginPath 
+        var url = 'api/connect/token';  // JwtProvider's LoginPath 
 
         var data = {
             username: username,
             password: password,
-            client_id: "BrewFree",
+            client_id: 'BrewFree',
             // required when signing up with username/password 
             grant_type: "password",
             // space-separated list of scopes for which the token is issued 

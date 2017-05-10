@@ -21,9 +21,9 @@ import { AuthService } from './auth.service';
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
         RouterModule.forRoot([
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
-            { path: 'home', component: HomeComponent },
-            { path: '**', redirectTo: 'home' }
+            //{ path: '', redirectTo: '', pathMatch: 'full' },
+            { path: '', component: HomeComponent },
+            { path: '**', redirectTo: 'app' }
         ])
     ]
 })
