@@ -8,7 +8,7 @@ using BrewFree.Data;
 namespace BrewFree.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170511102639_1.0.0")]
+    [Migration("20170512151213_1.0.0")]
     partial class _100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
