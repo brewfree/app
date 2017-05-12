@@ -3,6 +3,8 @@ import { enableProdMode } from '@angular/core';
 import { platformUniversalDynamic } from 'angular2-universal';
 import { AppModule } from './app/app.module';
 import 'bootstrap';
+import './app/styles/appstyles.less'
+
 const rootElemTagName = 'app'; // Update this if you change your root component selector
 
 // Enable either Hot Module Reloading or production mode

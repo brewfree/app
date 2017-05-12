@@ -64,14 +64,17 @@ namespace BrewFree
             {
                 options.AddEntityFrameworkCoreStores<ApplicationDbContext>();
                 options.AddMvcBinders();
-                options.EnableAuthorizationEndpoint("/connect/authorize")
-                    .EnableLogoutEndpoint("/connect/logout")
-                    .EnableTokenEndpoint("/connect/token")
-                    .EnableUserinfoEndpoint("/api/userinfo");
-                options.AllowAuthorizationCodeFlow()
-                    .AllowPasswordFlow()
-                    .AllowRefreshTokenFlow();
-                options.RequireClientIdentification();
+                options.EnableTokenEndpoint("/connect/token")
+                    .EnableAuthorizationEndpoint("/connect/authorize");
+                options.AllowPasswordFlow();
+                //options.EnableAuthorizationEndpoint("/connect/authorize")
+                //    .EnableLogoutEndpoint("/connect/logout")
+                //    .EnableTokenEndpoint("/connect/token")
+                //    .EnableUserinfoEndpoint("/api/userinfo");
+                //options.AllowAuthorizationCodeFlow()
+                //    .AllowPasswordFlow()
+                //    .AllowRefreshTokenFlow();
+                //options.RequireClientIdentification();
 
                 // options.UseJsonWebTokens();
                 // options.AddEphemeralSigningKey();
@@ -90,9 +93,7 @@ namespace BrewFree
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
-            app.UseStaticFiles();
-
+            
             app.UseWhen(context => !context.Request.Path.StartsWithSegments("/api"), branch =>
             {
                 if (env.IsDevelopment())
@@ -150,7 +151,9 @@ namespace BrewFree
             });
 
             app.UseOpenIddict();
-            
+
+            app.UseStaticFiles();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -169,7 +172,7 @@ namespace BrewFree
                 app.UseAppDbContextMigrations();
                 app.UseAppOpenIddict().GetAwaiter().GetResult();
                 app.UseAppAspNetIdentity().GetAwaiter().GetResult();
-                app.UseSeedData();
+                app.UseAppSeedData();
             }
         }
     }

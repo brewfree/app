@@ -8,7 +8,7 @@ module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
     const sharedConfig = {
         stats: { modules: false },
-        resolve: { extensions: [ '.js' ] },
+        resolve: { extensions: [ '.js', '.json' ] },
         module: {
             rules: [
                 { test: /\.(png|woff|woff2|eot|ttf|svg)(\?|$)/, use: 'url-loader?limit=100000' }
@@ -33,6 +33,16 @@ module.exports = (env) => {
                 'event-source-polyfill',
                 'jquery',
                 'zone.js',
+                'font-awesome/css/font-awesome.css',
+                'animate.css/animate.css',
+                'ionicons/dist/css/ionicons.css',
+                'vegas',
+                'vegas/dist/vegas.css',
+                'jquery.easing',
+                'jquery-countdown',
+                'device.js',
+                'smoothscroll-for-websites',
+                'wow.js'
             ]
         },
         output: {
@@ -51,7 +61,7 @@ module.exports = (env) => {
         output: { path: path.join(__dirname, 'wwwroot', 'dist') },
         module: {
             rules: [
-                { test: /\.css(\?|$)/, use: extractCSS.extract({ use: isDevBuild ? 'css-loader' : 'css-loader?minimize' }) }
+                { test: /\.css(\?|$)/, use: extractCSS.extract({ use: 'css-loader' }) }
             ]
         },
         plugins: [
@@ -73,7 +83,7 @@ module.exports = (env) => {
             libraryTarget: 'commonjs2',
         },
         module: {
-            rules: [ { test: /\.css(\?|$)/, use: ['to-string-loader', isDevBuild ? 'css-loader' : 'css-loader?minimize' ] } ]
+            rules: [ { test: /\.css(\?|$)/, use: ['to-string-loader', 'css-loader'] } ]
         },
         entry: { vendor: ['aspnet-prerendering'] },
         plugins: [

@@ -39,7 +39,9 @@
     <Content Remove="ClientApp\**" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ClientApp\dist\vendor-manifest.json" />
+    <Content Remove="wwwroot/dist\674f50d287a8c48dc19ba404d20fe713.eot" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="wwwroot\assets\0.jpg" />
     <Content Include="wwwroot\assets\1.jpg" />
     <Content Include="wwwroot\assets\2.jpg" />
@@ -63,6 +65,8 @@
     <Content Include="wwwroot\assets\apple-icon-precomposed.png" />
     <Content Include="wwwroot\assets\apple-icon.png" />
     <Content Include="wwwroot\assets\brewfree-fb.png" />
+    <Content Include="wwwroot\assets\brewfree-sm-white.png" />
+    <Content Include="wwwroot\assets\brewfree-sm.png" />
     <Content Include="wwwroot\assets\favicon-16x16.png" />
     <Content Include="wwwroot\assets\favicon-32x32.png" />
     <Content Include="wwwroot\assets\favicon-96x96.png" />
@@ -73,12 +77,6 @@
     <Content Include="wwwroot\assets\ms-icon-70x70.png" />
     <Content Include="wwwroot\assets\tyler.jpg" />
     <Content Include="wwwroot\browserconfig.xml" />
-    <Content Include="wwwroot\dist\89889688147bd7575d6327160d64e760.svg" />
-    <Content Include="wwwroot\dist\main-client.js" />
-    <Content Include="wwwroot\dist\main-client.js.map" />
-    <Content Include="wwwroot\dist\vendor-manifest.json" />
-    <Content Include="wwwroot\dist\vendor.css" />
-    <Content Include="wwwroot\dist\vendor.js" />
     <Content Include="wwwroot\favicon.ico" />
     <Content Include="wwwroot\manifest.json" />
   </ItemGroup>
@@ -88,6 +86,42 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\assets\0.jpg" />
+    <None Include="wwwroot\assets\1.jpg" />
+    <None Include="wwwroot\assets\2.jpg" />
+    <None Include="wwwroot\assets\3.jpg" />
+    <None Include="wwwroot\assets\4.jpg" />
+    <None Include="wwwroot\assets\android-icon-144x144.png" />
+    <None Include="wwwroot\assets\android-icon-192x192.png" />
+    <None Include="wwwroot\assets\android-icon-36x36.png" />
+    <None Include="wwwroot\assets\android-icon-48x48.png" />
+    <None Include="wwwroot\assets\android-icon-72x72.png" />
+    <None Include="wwwroot\assets\android-icon-96x96.png" />
+    <None Include="wwwroot\assets\apple-icon-114x114.png" />
+    <None Include="wwwroot\assets\apple-icon-120x120.png" />
+    <None Include="wwwroot\assets\apple-icon-144x144.png" />
+    <None Include="wwwroot\assets\apple-icon-152x152.png" />
+    <None Include="wwwroot\assets\apple-icon-180x180.png" />
+    <None Include="wwwroot\assets\apple-icon-57x57.png" />
+    <None Include="wwwroot\assets\apple-icon-60x60.png" />
+    <None Include="wwwroot\assets\apple-icon-72x72.png" />
+    <None Include="wwwroot\assets\apple-icon-76x76.png" />
+    <None Include="wwwroot\assets\apple-icon-precomposed.png" />
+    <None Include="wwwroot\assets\apple-icon.png" />
+    <None Include="wwwroot\assets\brewfree-fb.png" />
+    <None Include="wwwroot\assets\brewfree-sm-white.png" />
+    <None Include="wwwroot\assets\brewfree-sm.png" />
+    <None Include="wwwroot\assets\favicon-16x16.png" />
+    <None Include="wwwroot\assets\favicon-32x32.png" />
+    <None Include="wwwroot\assets\favicon-96x96.png" />
+    <None Include="wwwroot\assets\john.jpg" />
+    <None Include="wwwroot\assets\ms-icon-144x144.png" />
+    <None Include="wwwroot\assets\ms-icon-150x150.png" />
+    <None Include="wwwroot\assets\ms-icon-310x310.png" />
+    <None Include="wwwroot\assets\ms-icon-70x70.png" />
+    <None Include="wwwroot\assets\tyler.jpg" />
   </ItemGroup>
   <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->

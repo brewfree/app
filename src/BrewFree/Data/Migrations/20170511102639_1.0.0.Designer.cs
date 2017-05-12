@@ -8,13 +8,13 @@ using BrewFree.Data;
 namespace BrewFree.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170509132829_Initial")]
-    partial class Initial
+    [Migration("20170511102639_1.0.0")]
+    partial class _100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.1.1")
+                .HasAnnotation("ProductVersion", "1.1.2")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("BrewFree.Data.Models.ApplicationUser", b =>

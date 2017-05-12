@@ -5,7 +5,7 @@ import { AppComponent } from './components/app/app.component'
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/shared/header/header.component';
-import { AuthService } from './auth.service';
+//import { AuthService } from './auth.service';
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -16,7 +16,7 @@ import { AuthService } from './auth.service';
         HeaderComponent
     ],
     providers: [
-        AuthService
+        //AuthService
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.

@@ -74,7 +74,6 @@ When you are ready to start development:
 Whenever a change is committed in master, a CI build will run that executes tests and publishes to staging.
 
 ### Database
-
 Localdb is used in development and Azure SQL is used for staging/production.  Follow these instructions if you need to make a database change.
 
 **IMPORTANT Follow these stps for initial release only.** 
@@ -100,16 +99,20 @@ dotnet ef migrations script --idempotent --output "C:\Dev\BrewFree\Scripts\Relea
 ### API
 Swagger is used in development to browse/test the API.  Navigate to https://localhost:44399/api/ to get the swagger interface.
 
-### Adding an app Script/Stylesheet
+### Updating /dist Files
+Webpack is used to bundle files and put them in the dist folder.  The webpack is split by vendor files (webpack.config.vendor.js) and app files (webpack.config.js).  The app webpack is built automatically when you run, but the vendor webpack has to be updated manually since it takes a bit of time and we don't want to do it on each build.
+Note: it is safe to delete everything in the dist folders in both www/dist and ClientApp/dist and run both the vendor and client webpack to re-create the files.
+
+#### Updating App /dist Files
 - Add the file in the appropriate area in ClientApp (e.g. less file)
-- Update webpackconfig.js (if needed)
-- In the project root, run the following command
+- Update webpackconfig.js (only if special loaders or other configuration are needed)
+- The client dist files are created automatically when you run the app, but you can also create them by running webpack (which uses webpack.config.js by default)
 
 ```
 webpack
 ```
-### Adding a Vendor Script/Stylesheet
 
+#### Updating Vendor /dist files
 Add the package to package.json OR use npm install.  For example, to add Vegas:
 ```
 npm install Vegas --save
@@ -127,10 +130,14 @@ After updating the webpack config file, you must run webpack to generate the pac
 webpack --config webpack.config.vendor.js 
 ```
 
-## Learning Roadmap
+## Learning
 The following are helpful for learning the technologies used in the application.
 
-### Pluralsight
+### Articles
+- [Angular 2 Template for Visual Studio](http://blog.stevensanderson.com/2016/10/04/angular2-template-for-visual-studio/)
+- [Webpack](https://angular.io/docs/ts/latest/guide/webpack.html) 
+
+### Pluralsight (subscription required)
 - [Using ASP.NET Core to Build Single-page Applications](https://app.pluralsight.com/library/courses/aspnet-core-build-single-page-applications/table-of-contents)
 
 ### Markdown

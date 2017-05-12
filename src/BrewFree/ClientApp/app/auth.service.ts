@@ -1,85 +1,85 @@
-﻿import { Injectable, EventEmitter } from '@angular/core';
-import { Http, Headers, Response, RequestOptions } from '@angular/http';
+﻿//import { Injectable, EventEmitter } from '@angular/core';
+//import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
-@Injectable()
-export class AuthService {
-    authKey = 'auth';
+//@Injectable()
+//export class AuthService {
+//    authKey = 'auth';
 
-    constructor(private http: Http) {
-    }
+//    constructor(private http: Http) {
+//    }
 
-    login(username: string, password: string): any {
-        var url = 'api/connect/token';  // JwtProvider's LoginPath 
+//    login(username: string, password: string): any {
+//        var url = 'api/connect/token';  // JwtProvider's LoginPath 
 
-        var data = {
-            username: username,
-            password: password,
-            client_id: 'BrewFree',
-            // required when signing up with username/password 
-            grant_type: "password",
-            // space-separated list of scopes for which the token is issued 
-            scope: "offline_access profile email"
-        };
+//        var data = {
+//            username: username,
+//            password: password,
+//            client_id: 'BrewFree',
+//            // required when signing up with username/password 
+//            grant_type: "password",
+//            // space-separated list of scopes for which the token is issued 
+//            scope: "offline_access profile email"
+//        };
 
-        return this.http.post(
-            url,
-            this.toUrlEncodedString(data),
-            new RequestOptions({
-                headers: new Headers({
-                    "Content-Type": "application/x-www-form-urlencoded"
-                })
-            }))
-            .map(response => {
-                var auth = response.json();
-                console.log("The following auth JSON object has been received:");
-                console.log(auth);
-                this.setAuth(auth);
-                return auth;
-            });
-    }
+//        return this.http.post(
+//            url,
+//            this.toUrlEncodedString(data),
+//            new RequestOptions({
+//                headers: new Headers({
+//                    "Content-Type": "application/x-www-form-urlencoded"
+//                })
+//            }))
+//            .map(response => {
+//                var auth = response.json();
+//                console.log("The following auth JSON object has been received:");
+//                console.log(auth);
+//                this.setAuth(auth);
+//                return auth;
+//            });
+//    }
 
-    logout(): boolean {
-        this.setAuth(null);
-        return false;
-    }
+//    logout(): boolean {
+//        this.setAuth(null);
+//        return false;
+//    }
 
-    // Converts a Json object to urlencoded format 
-    toUrlEncodedString(data: any) {
-        var body = "";
-        for (var key in data) {
-            if (body.length) {
-                body += "&";
-            }
-            body += key + "=";
-            body += encodeURIComponent(data[key]);
-        }
-        return body;
-    }
+//    // Converts a Json object to urlencoded format 
+//    toUrlEncodedString(data: any) {
+//        var body = "";
+//        for (var key in data) {
+//            if (body.length) {
+//                body += "&";
+//            }
+//            body += key + "=";
+//            body += encodeURIComponent(data[key]);
+//        }
+//        return body;
+//    }
 
-    // Persist auth into localStorage or removes it if a NULL argument is given 
-    setAuth(auth: any): boolean {
-        if (auth) {
-            localStorage.setItem(this.authKey, JSON.stringify(auth));
-        }
-        else {
-            localStorage.removeItem(this.authKey);
-        }
-        return true;
-    }
+//    // Persist auth into localStorage or removes it if a NULL argument is given 
+//    setAuth(auth: any): boolean {
+//        if (auth) {
+//            localStorage.setItem(this.authKey, JSON.stringify(auth));
+//        }
+//        else {
+//            localStorage.removeItem(this.authKey);
+//        }
+//        return true;
+//    }
 
-    // Retrieves the auth JSON object (or NULL if none) 
-    getAuth(): any {
-        var i = localStorage.getItem(this.authKey);
-        if (i) {
-            return JSON.parse(i);
-        }
-        else {
-            return null;
-        }
-    }
+//    // Retrieves the auth JSON object (or NULL if none) 
+//    getAuth(): any {
+//        var i = localStorage.getItem(this.authKey);
+//        if (i) {
+//            return JSON.parse(i);
+//        }
+//        else {
+//            return null;
+//        }
+//    }
 
-    // Returns TRUE if the user is logged in, FALSE otherwise. 
-    isLoggedIn(): boolean {
-        return localStorage.getItem(this.authKey) != null;
-    }
-} 
+//    // Returns TRUE if the user is logged in, FALSE otherwise. 
+//    isLoggedIn(): boolean {
+//        return localStorage.getItem(this.authKey) != null;
+//    }
+//} 

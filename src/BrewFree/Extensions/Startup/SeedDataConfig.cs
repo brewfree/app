@@ -6,7 +6,7 @@ namespace BrewFree.Extensions.Startup
 {
     public static class SeedDataConfig
     {
-        public static void UseSeedData(this IApplicationBuilder app)
+        public static void UseAppSeedData(this IApplicationBuilder app)
         {
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
