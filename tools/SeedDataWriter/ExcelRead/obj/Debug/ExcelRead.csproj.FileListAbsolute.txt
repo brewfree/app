@@ -1,0 +1,7 @@
+C:\Dev\ExcelRead\ExcelRead\ExcelRead\obj\Debug\ExcelRead.csprojResolveAssemblyReference.cache
+C:\Dev\ExcelRead\ExcelRead\ExcelRead\obj\Debug\ExcelRead.csproj.ResolveComReference.cache
+C:\Dev\ExcelRead\ExcelRead\ExcelRead\bin\Debug\ExcelRead.exe.config
+C:\Dev\ExcelRead\ExcelRead\ExcelRead\bin\Debug\ExcelRead.exe
+C:\Dev\ExcelRead\ExcelRead\ExcelRead\bin\Debug\ExcelRead.pdb
+C:\Dev\ExcelRead\ExcelRead\ExcelRead\obj\Debug\ExcelRead.exe
+C:\Dev\ExcelRead\ExcelRead\ExcelRead\obj\Debug\ExcelRead.pdb
