@@ -10,6 +10,10 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 $fa-font-path: '~font-awesome/fonts/';
 @import "~font-awesome/scss/font-awesome.scss";
 
+/* Import Ionicons */
+$ionicons-font-path: '~ionicons/dist/fonts/';
+@import "~ionicons/dist/scss/ionicons.scss";
+
 /* *** Overall APP Styling can go here ***
    --------------------------------------------
    Note: This Component has ViewEncapsulation.None so the styles will bleed out
