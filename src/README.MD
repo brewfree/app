@@ -103,11 +103,14 @@ Swagger is used in development to browse/test the API.  Navigate to https://loca
 Webpack is used to bundle files and put them in the dist folder.  
 Note: it is safe to delete everything in the dist folders in both www/dist and ClientApp/dist and run both the vendor and client webpack to re-create the files.
 
-The first time you run the project run the following commands:
+The first time you run the project run the following command:
 
 ```
 npm rebuild node-sass --force
+```
 
+To rebuild the webpack dist files run this command:
+```
 npm install && npm run build:dev && dotnet restore
 ```
 
