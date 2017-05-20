@@ -250,4 +250,7 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+# web packed files
 /src/BrewFree/Client/dist
+/src/BrewFree/wwwroot/dist
