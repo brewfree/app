@@ -48,7 +48,7 @@ dotnet user-secrets set Authentication:Google:ClientID [HIDDEN]
 dotnet user-secrets set Authentication:Google:ClientSecret [HIDDEN]
 ```
 
-## What You Need to Know
+## Getting Started
 
 ### Technologies Used
 Here's a list of the major architectural components of the app:
@@ -99,35 +99,16 @@ dotnet ef migrations script --idempotent --output "C:\Dev\BrewFree\Scripts\Relea
 ### API
 Swagger is used in development to browse/test the API.  Navigate to https://localhost:44399/api/ to get the swagger interface.
 
-### Updating /dist Files
-Webpack is used to bundle files and put them in the dist folder.  The webpack is split by vendor files (webpack.config.vendor.js) and app files (webpack.config.js).  The app webpack is built automatically when you run, but the vendor webpack has to be updated manually since it takes a bit of time and we don't want to do it on each build.
+### Webpack
+Webpack is used to bundle files and put them in the dist folder.  
 Note: it is safe to delete everything in the dist folders in both www/dist and ClientApp/dist and run both the vendor and client webpack to re-create the files.
 
-#### Updating App /dist Files
-- Add the file in the appropriate area in ClientApp (e.g. less file)
-- Update webpackconfig.js (only if special loaders or other configuration are needed)
-- The client dist files are created automatically when you run the app, but you can also create them by running webpack (which uses webpack.config.js by default)
+The first time you run the project run the following commands:
 
 ```
-webpack
-```
+npm rebuild node-sass --force
 
-#### Updating Vendor /dist files
-Add the package to package.json OR use npm install.  For example, to add Vegas:
-```
-npm install Vegas --save
-```
-
-Edit webpack.config.vendor.js and add the entry to the vendor array.  If you are adding Javascript you can simply add the package name, but to add CSS, you have to add the path to it.  To get the path, you can browse the node packages directory (Visual Studio 2017, right click on the nuget dependency and Open in File Explorer).
-The Vegas package requires 2 entries:
-```
-'vegas',
-'vegas/dist/vegas.css'
-```
-
-After updating the webpack config file, you must run webpack to generate the package:
-```
-webpack --config webpack.config.vendor.js 
+npm install && npm run build:dev && dotnet restore
 ```
 
 ## Learning

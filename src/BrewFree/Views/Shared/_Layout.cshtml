@@ -1,44 +1,19 @@
-﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
-@using BrewFree.Extensions.Mvc
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="@Url.AbsoluteContent("~/")assets/ms-icon-144x144.png">
-        <meta name="theme-color" content="#000000">
-        <meta property="fb:app_id" content="2090451257848144" />
-        <meta property="og:url" content="@Url.AbsoluteContent("~/")" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="BREW FREE - ENABLING EVERY HOME BREWER ON THE PLANET TO BREW BETTER" />
-        <meta property="og:description" content="Open-source cloud-based home brewing software developed and supported by a community that enables the free exchange of home brewing tools and knowledge." />
-        <meta property="og:image" content="@Url.AbsoluteContent("~/")assets/brewfree-fb.png" />
-        <title>Brew Free - @ViewData["Title"]</title>
-        <base href="/" />
-        <link rel="apple-touch-icon" sizes="57x57" href="@Url.AbsoluteContent("~/")assets/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="@Url.AbsoluteContent("~/")assets/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="@Url.AbsoluteContent("~/")assets/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="@Url.AbsoluteContent("~/")assets/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="@Url.AbsoluteContent("~/")assets/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="@Url.AbsoluteContent("~/")assets/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="@Url.AbsoluteContent("~/")assets/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="@Url.AbsoluteContent("~/")assets/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="@Url.AbsoluteContent("~/")assets/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192" href="@Url.AbsoluteContent("~/")assets/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="@Url.AbsoluteContent("~/")assets/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="@Url.AbsoluteContent("~/")assets/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="@Url.AbsoluteContent("~/")assets/favicon-16x16.png">
-        <link rel="manifest" href="~/manifest.json">
-        <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/dist/appstyles.css" asp-append-version="true" />
-        @Html.Raw(JavaScriptSnippet.FullScript)
-        @RenderSection("additionalPageHead", required: false)
-    </head>
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
-@RenderBody()
-
-@RenderSection("scripts", required: false)
+<head>
+    <base href="/" />
+    <title>@ViewData["Title"]</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @Html.Raw(ViewData["Meta"])
+    @Html.Raw(ViewData["Links"])
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css" />
+    @Html.Raw(ViewData["Styles"])
+</head>
+<body>
+    @RenderBody()
+    <!-- Here we're passing down any data to be used by grabbed and parsed by Angular -->
+    @Html.Raw(ViewData["TransferData"])
+    @RenderSection("scripts", required: false)
 </body>
 </html>

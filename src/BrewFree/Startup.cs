@@ -1,3 +1,4 @@
+using System.IO;
 using AspNet.Security.OpenIdConnect.Primitives;
 using BrewFree.Data;
 using BrewFree.Data.Models;
@@ -16,6 +17,19 @@ namespace BrewFree
 {
     public class Startup
     {
+        public static void Main(string[] args)
+        {
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .UseStartup<Startup>()
+                .UseApplicationInsights()
+                .Build();
+
+            host.Run();
+        }
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -39,6 +53,7 @@ namespace BrewFree
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddNodeServices();
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {
@@ -93,7 +108,9 @@ namespace BrewFree
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            
+
+            app.UseStaticFiles();
+
             app.UseWhen(context => !context.Request.Path.StartsWithSegments("/api"), branch =>
             {
                 if (env.IsDevelopment())
@@ -151,9 +168,7 @@ namespace BrewFree
             });
 
             app.UseOpenIddict();
-
-            app.UseStaticFiles();
-
+                        
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

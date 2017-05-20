@@ -1,77 +1,46 @@
 const path = require('path');
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
-const extractStyles = new (require('extract-text-webpack-plugin'))('appstyles.css');
+const webpackMerge = require('webpack-merge');
+const commonPartial = require('./webpack/webpack.common');
+const clientPartial = require('./webpack/webpack.client');
+const serverPartial = require('./webpack/webpack.server');
+const prodPartial = require('./webpack/webpack.prod');
+const { getAotPlugin } = require('./webpack/webpack.aot');
 
-module.exports = (env) => {
-    // Configuration in common to both client-side and server-side bundles
-    const isDevBuild = !(env && env.prod);
-    const sharedConfig = {
-        stats: { modules: false },
-        context: __dirname,
-        resolve: { extensions: ['.js', '.ts', '.json'] },
-        output: {
-            filename: '[name].js',
-            publicPath: '/dist/' // Webpack dev middleware, if enabled, handles requests for this URL prefix
-        },
-        module: {
-            rules: [
-                { test: /\.ts$/, include: /ClientApp/, use: ['awesome-typescript-loader?silent=true', 'angular2-template-loader'] },
-                { test: /\.html$/, use: 'html-loader?minimize=false' },
-                { test: /\.css$/, use: ['to-string-loader', 'css-loader'] },
-                //{ test: /\.less/, include: /ClientApp/, loader: 'raw-loader!less-loader' },
-                { test: /\.less/, loader: extractStyles.extract('css-loader!less-loader') },
-                { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' }
-            ]
-        },
+module.exports = function (options, webpackOptions) {
+    options = options || {};
+    webpackOptions = webpackOptions || {};
+
+    if (options.aot) {
+        console.log(`Running build for ${options.client ? 'client' : 'server'} with AoT Compilation`)
+    }
+
+    const serverConfig = webpackMerge({}, commonPartial, serverPartial, {
+        entry: options.aot ? { 'main-server': './Client/main.server.aot.ts' } : serverPartial.entry, // Temporary
         plugins: [
-            new CheckerPlugin(),
-            extractStyles
+            getAotPlugin('server', !!options.aot)
         ]
-    };
-
-    // Configuration for client-side bundle suitable for running in browsers
-    const clientBundleOutputDir = './wwwroot/dist';
-    const clientBundleConfig = merge(sharedConfig, {
-        entry: { 'main-client': './ClientApp/boot-client.ts' },
-        output: { path: path.join(__dirname, clientBundleOutputDir) },
-        plugins: [
-            new webpack.DllReferencePlugin({
-                context: __dirname,
-                manifest: require('./wwwroot/dist/vendor-manifest.json')
-            })
-        ].concat(isDevBuild ? [
-            // Plugins that apply in development builds only
-            new webpack.SourceMapDevToolPlugin({
-                filename: '[file].map', // Remove this line if you prefer inline source maps
-                moduleFilenameTemplate: path.relative(clientBundleOutputDir, '[resourcePath]') // Point sourcemap entries to the original file locations on disk
-            })
-        ] : [
-                // Plugins that apply in production builds only
-                new webpack.optimize.UglifyJsPlugin()
-            ])
     });
 
-    // Configuration for server-side (prerendering) bundle suitable for running in Node
-    const serverBundleConfig = merge(sharedConfig, {
-        resolve: { mainFields: ['main'] },
-        entry: { 'main-server': './ClientApp/boot-server.ts' },
+    let clientConfig = webpackMerge({}, commonPartial, clientPartial, {
         plugins: [
-            new webpack.DllReferencePlugin({
-                context: __dirname,
-                manifest: require('./ClientApp/dist/vendor-manifest.json'),
-                sourceType: 'commonjs2',
-                name: './vendor'
-            })
-        ],
-        output: {
-            libraryTarget: 'commonjs',
-            path: path.join(__dirname, './ClientApp/dist')
-        },
-        target: 'node',
-        devtool: 'inline-source-map'
+            getAotPlugin('client', !!options.aot)
+        ]
     });
 
-    return [clientBundleConfig, serverBundleConfig];
-};
+    if (webpackOptions.prod) {
+        clientConfig = webpackMerge({}, clientConfig, prodPartial);
+    }
+
+    const configs = [];
+    if (!options.aot) {
+        configs.push(clientConfig, serverConfig);
+
+    } else if (options.client) {
+        configs.push(clientConfig);
+
+    } else if (options.server) {
+        configs.push(serverConfig);
+    }
+
+    return configs;
+}
