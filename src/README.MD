@@ -103,7 +103,7 @@ Swagger is used in development to browse/test the API.  Navigate to https://loca
 Webpack is used to bundle files and put them in the dist folder.  
 Note: it is safe to delete everything in the dist folders in both www/dist and ClientApp/dist and run both the vendor and client webpack to re-create the files.
 
-The first time you run the project run the following command:
+The first time you run the project you may need to run the following command (only if the webpack command below fails):
 
 ```
 npm rebuild node-sass --force
@@ -118,6 +118,7 @@ npm install && npm run build:dev && dotnet restore
 The following are helpful for learning the technologies used in the application.
 
 ### Articles
+- [Angular Universal & ASP.NET Core Advanced Starter](https://github.com/MarkPieszak/aspnetcore-angular2-universal)
 - [Angular 2 Template for Visual Studio](http://blog.stevensanderson.com/2016/10/04/angular2-template-for-visual-studio/)
 - [Webpack](https://angular.io/docs/ts/latest/guide/webpack.html) 
 
