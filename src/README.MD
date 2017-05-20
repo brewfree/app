@@ -71,7 +71,8 @@ When you are ready to start development:
 - The project lead will approve and merge the pull request into master
 
 ### Builds and Release
-Whenever a change is committed in master, a CI build will run that executes tests and publishes to staging.
+- Whenever a change is committed in master, a CI build will run that executes tests and publishes to staging at http://brewfree-stage.azurewebsites.net
+- Staging is promoted to production at http://www.brewfree.org
 
 ### Database
 Localdb is used in development and Azure SQL is used for staging/production.  Follow these instructions if you need to make a database change.
