@@ -6,6 +6,9 @@ $navbar-default-color: $light-orange;
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
+/* Import Font Awesome */
+$fa-font-path: '~font-awesome/fonts/';
+@import "~font-awesome/scss/font-awesome.scss";
 
 /* *** Overall APP Styling can go here ***
    --------------------------------------------
